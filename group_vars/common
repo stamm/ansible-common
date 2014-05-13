@@ -2,6 +2,7 @@
 iptables:
   white_list_ips:
     - "{{ ansible_eth0.ipv4.address }}/32"
+    - "192.168.50.1/32"
   open_ports:
     - 22
     - 80

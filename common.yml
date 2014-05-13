@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  roles: [usual]
+  roles: [common]
   sudo: yes
   # accelerate: true
   # remote_user: root

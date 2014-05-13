@@ -1,14 +1,13 @@
 ---
 - command: apt-get install -y python-apt
 
-- apt:
+- name: Install packages
+  apt:
     pkg: "{{ item }}"
     state: latest
   with_items:
-    - locales
     - mc
     - htop
-    - ntp
     - curl
     - git
 

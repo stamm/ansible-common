@@ -1,4 +1,10 @@
 ---
+
+- name: Install locales
+  apt:
+    pkg: locales
+    state: latest
+
 - name: write default/locale
   template: src=locale.j2 dest=/etc/default/locale owner=root group=root mode=0644
 
