@@ -12,7 +12,7 @@
   when: ansible_os_family == "Debian"
   tags: [configuration,timezone]
 
-- name: Set /etc/timezone to {{ timezone }}
+- name: "Set /etc/timezone to {{ timezone }}"
   template: dest=/etc/timezone src=timezone.j2
   notify: update tzdata
   when: ansible_os_family == "Debian"

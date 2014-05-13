@@ -1,12 +1,8 @@
 #! /bin/sh
 
-#$Id$
 #{{ ansible_managed }}
 
 IPTABLES="/sbin/iptables"
-WHITE_IP="{{ ansible_eth0.ipv4.address }}"
-
-
 
 echo 1 > /proc/sys/net/ipv4/conf/default/rp_filter
 echo 1 > /proc/sys/net/ipv4/ip_forward

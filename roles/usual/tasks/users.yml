@@ -19,18 +19,19 @@
     shell=/bin/bash
   with_items: users
 
-- authorized_key: user="{{ item.0.name }}"
+- name: Add keys
+  authorized_key: user={{ item.0.name }}
     key="{{ lookup('file', inventory_dir + '/' + item.1) }}"
   with_subelements:
      - users
      - ssh_keys
 
-- name: Create directory 
-  file: path=/home/{{ item.name }}/.config/mc/ state=directory recurse=yes owner=stamm mode=0700
+- name: Create directory for mc config 
+  file: path=/home/{{ item.name }}/.config/mc/ state=directory recurse=yes owner={{ item.name }} mode=0700
   with_items: users
 
 - name: Copy mc config
-  copy: src=mc.ini dest=/home/{{ item.name }}/.config/mc/ini owner=stamm mode=0600
+  copy: src=mc.ini dest=/home/{{ item.name }}/.config/mc/ini owner={{ item.name }} mode=0600
   with_items: users
 
 #- file: path=/home/deploy/.config/mc/ state=directory recurse=yes

@@ -3,7 +3,7 @@
   service: name=ssh state=reloaded
 
 - name: restart iptables
-  shell: iptables-restore < /etc/iptables.rules
+  shell: /etc/network/if-up.d/iptables
 
 - name: update tzdata
   command: dpkg-reconfigure --frontend noninteractive tzdata
@@ -13,3 +13,4 @@
 
 - name: restart ntp
   service: name=ntp state=restarted
+

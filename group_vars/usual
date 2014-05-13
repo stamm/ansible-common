@@ -15,10 +15,14 @@ locale_generate:
 users:
   - name: stamm
     groups: ['admins', 'deploys']
-    ssh_keys: ['files/public_keys/stamm.pub']
+    ssh_keys:
+      - files/public_keys/stamm-work.pub
+      - files/public_keys/stamm-macbook.pub
     uid: 1001
   
   - name: deploy
     groups: ['deploys']
-    ssh_keys: ['files/public_keys/stamm.pub']
+    ssh_keys:
+      - files/public_keys/stamm-work.pub
+      - files/public_keys/stamm-macbook.pub
     uid: 1002

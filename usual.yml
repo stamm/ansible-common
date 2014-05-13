@@ -5,7 +5,7 @@
   # accelerate: true
   # remote_user: root
   tasks:
-  # - debug: msg="{{ hostvars[inventory_hostname] }} is an environment variable"
+  # - debug: msg="{{ inventory_dir }}"
   # - debug: msg="{{ lookup('file', users[0].ssh_keys) }} is an environment variable"
 
   # - name: SSH keys
