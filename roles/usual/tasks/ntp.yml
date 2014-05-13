@@ -1,0 +1,24 @@
+---
+- name: ntp | Make sure the dependencies are installed
+  apt:
+    pkg: "{{item}}"
+    state: present
+  with_items:
+    - ntp
+    - ntpdate
+  when: ansible_os_family == 'Debian'
+
+
+- name: Ensure NTP is running and enabled at system start.
+  service: >
+    name=ntp
+    state=started
+    enabled=yes
+  when: ntp_enabled
+
+- name: Ensure NTP is stopped and disabled at system start.
+  service: >
+    name=ntp
+    state=stopped
+    enabled=no
+  when: not ntp_enabled

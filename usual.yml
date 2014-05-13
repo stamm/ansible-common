@@ -1,0 +1,22 @@
+---
+- hosts: all
+  roles: [usual]
+  sudo: yes
+  # accelerate: true
+  # remote_user: root
+  tasks:
+  # - debug: msg="{{ hostvars[inventory_hostname] }} is an environment variable"
+  # - debug: msg="{{ lookup('file', users[0].ssh_keys) }} is an environment variable"
+
+  # - name: SSH keys
+  #   authorized_key:
+  #     user={{ item.0.name }}
+  #     key="{{ lookup('file', item.1) }}"
+  #   with_subelements:
+  #      - users
+  #      - ssh_keys
+    # - authorized_key: user="{{ item.0.name }}"
+    #     key="{{ lookup('file', item.1) }}"
+    #   with_subelements:
+    #    - users
+    #    - ssh_keys

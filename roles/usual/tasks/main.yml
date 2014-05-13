@@ -1,0 +1,21 @@
+---
+- command: apt-get install -y python-apt
+
+- apt:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - locales
+    - mc
+    - htop
+    - ntp
+    - curl
+    - git
+
+- include: timezone.yml
+- include: ntp.yml
+- include: hostname.yml
+- include: locale.yml
+- include: users.yml
+- include: ssh.yml
+- include: iptables.yml

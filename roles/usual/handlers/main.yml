@@ -1,0 +1,15 @@
+---
+- name: restart ssh
+  service: name=ssh state=reloaded
+
+- name: restart iptables
+  shell: iptables-restore < /etc/iptables.rules
+
+- name: update tzdata
+  command: dpkg-reconfigure --frontend noninteractive tzdata
+
+- name: run locale-gen
+  command: locale-gen
+
+- name: restart ntp
+  service: name=ntp state=restarted

@@ -1,0 +1,38 @@
+- name: install sudo package
+  apt: pkg=sudo state=latest
+
+
+- name: Create group admins
+  group: name=admins state=present gid=1100
+
+- name: Create group deploys
+  group: name=deploys state=present gid=1101
+
+- name: Create sudo permission to group admins
+  copy: src=admins dest=/etc/sudoers.d/admins owner=root
+
+- name: Create user
+  user:
+    name={{ item.name }}
+    groups="{{ item.groups | join(',') }}"
+    uid="{{ item.uid }}"
+    shell=/bin/bash
+  with_items: users
+
+- authorized_key: user="{{ item.0.name }}"
+    key="{{ lookup('file', inventory_dir + '/' + item.1) }}"
+  with_subelements:
+     - users
+     - ssh_keys
+
+- name: Create directory 
+  file: path=/home/{{ item.name }}/.config/mc/ state=directory recurse=yes owner=stamm mode=0700
+  with_items: users
+
+- name: Copy mc config
+  copy: src=mc.ini dest=/home/{{ item.name }}/.config/mc/ini owner=stamm mode=0600
+  with_items: users
+
+#- file: path=/home/deploy/.config/mc/ state=directory recurse=yes
+#- copy: src=mc.ini dest=/home/deploy/.config/mc/ini
+

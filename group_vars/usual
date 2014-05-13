@@ -1,0 +1,24 @@
+---
+iptables:
+  white_list_ips:
+    - "{{ ansible_eth0.ipv4.address }}/32"
+  open_ports:
+    - 22
+    - 80
+
+timezone: Europe/Moscow
+
+locale_generate:
+  - "en_US.UTF-8 UTF-8"
+  - "ru_RU.UTF-8"
+
+users:
+  - name: stamm
+    groups: ['admins', 'deploys']
+    ssh_keys: ['files/public_keys/stamm.pub']
+    uid: 1001
+  
+  - name: deploy
+    groups: ['deploys']
+    ssh_keys: ['files/public_keys/stamm.pub']
+    uid: 1002
