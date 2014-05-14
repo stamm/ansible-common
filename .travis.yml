@@ -15,5 +15,5 @@ script:
   - echo password > vault
   - cp vars/secret.yml.example vars/secret.yml
   - ansible-vault encrypt --vault-password-file=vault vars/secret.yml
-  - ansible-playbook -i inventory --syntax-check --list-tasks common.yml
+  - ansible-playbook -i inventory --syntax-check --list-tasks --vault-password-file=vault common.yml
   - ansible-playbook -i inventory --connection=local --sudo -vvvv --vault-password-file=vault common.yml
