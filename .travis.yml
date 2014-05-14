@@ -10,4 +10,10 @@ script:
   # Syntax check every ansible playbook in root
   # Don't check main, though, as vars_prompt still
   # trigger during syntax checks, and travis fails
-  - find . -maxdepth 1 -type f -name '*.yml' -not -name '.*' -not -name 'main.yml' | xargs -t -n1 ansible-playbook --syntax-check -i hosts_vagrant
+  #- find . -maxdepth 1 -type f -name '*.yml' -not -name '.*' -not -name 'main.yml' | xargs -t -n1 ansible-playbook --syntax-check -i hosts_vagrant
+  - echo localhost > inventory
+  - echo password > vault
+  - cp vars/secret.yml.example vars/secret.yml
+  - ansible-vault encrypt --vault-password-file=vault vars/secret.yml
+  - ansible-playbook -i inventory --syntax-check --list-tasks common.yml
+  - ansible-playbook -i inventory --connection=local --sudo -vvvv --vault-password-file=vault common.yml
