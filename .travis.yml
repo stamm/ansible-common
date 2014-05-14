@@ -12,8 +12,8 @@ script:
   # trigger during syntax checks, and travis fails
   #- find . -maxdepth 1 -type f -name '*.yml' -not -name '.*' -not -name 'main.yml' | xargs -t -n1 ansible-playbook --syntax-check -i hosts_vagrant
   - echo "[common]\nlocalhost" > inventory
-  - echo password > vault
+  - echo password > vault_pass.txt
   - cp vars/secret.yml.example vars/secret.yml
-  - ansible-vault encrypt --vault-password-file=vault vars/secret.yml
-  - ansible-playbook -i inventory --syntax-check --list-tasks --vault-password-file=vault common.yml
-  - ansible-playbook -i inventory --connection=local --sudo -vvvv --vault-password-file=vault common.yml
+  - ansible-vault encrypt --vault-password-file=./vault_pass.txt vars/secret.yml
+  - ansible-playbook -i inventory --syntax-check --list-tasks --vault-password-file vault_pass.txt common.yml
+  - ansible-playbook -i inventory --connection=local --sudo -vvvv --vault-password-file vault_pass.txt common.yml
