@@ -7,6 +7,7 @@ iptables:
     - 22
     - 80
 
+ntp_enabled: true
 timezone: Europe/Moscow
 
 root_mail: rustam@zagirov.name

@@ -1,20 +1,9 @@
 ---
-- command: apt-get install -y python-apt
-
-- name: Install packages
-  apt:
-    pkg: "{{ item }}"
-    state: latest
-  with_items:
-    - mc
-    - htop
-    - curl
-    - git
-
-- include: timezone.yml
-- include: ntp.yml
+- include: packages.yml
 - include: hostname.yml
 - include: locale.yml
+- include: timezone.yml
+- include: ntp.yml
 - include: users.yml
 - include: ssh.yml
 - include: iptables.yml

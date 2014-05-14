@@ -8,12 +8,12 @@
     backup=yes
     backrefs=yes
   when: ansible_hostname != hostname_name
-  tags: [configuration,hostname]
+  tags: [configuration, hostname]
 
 - name: Set hostname
   hostname: name={{ hostname_name }}
   when: hostname_name is defined
-  tags: [configuration,hostname]
+  tags: [configuration, hostname]
 
 - name: Update /etc/hosts
   lineinfile:
@@ -21,7 +21,7 @@
     regexp="^{{hostname_ip}}"
     line="{{hostname_ip}}{% if hostname_name != hostname_fqdn %}{{'\t'}}{{ hostname_fqdn }}{% endif %}{{'\t'}}{{ hostname_name }}"
     state=present
-  tags: [configuration,hostname]
+  tags: [configuration, hostname]
 
 - name: Update /etc/hosts if ip different from default
   lineinfile:
@@ -29,6 +29,4 @@
     regexp="^{{hostname_default_ip}}"
     state=absent
   when: hostname_default_ip != hostname_ip
-  tags: [configuration,hostname]
-
-
+  tags: [configuration, hostname]

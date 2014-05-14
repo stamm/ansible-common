@@ -6,19 +6,21 @@
   with_items:
     - ntp
     - ntpdate
-  when: ansible_os_family == 'Debian'
+  tags: [configuration, ntp]
 
 
-- name: Ensure NTP is running and enabled at system start.
+- name: Ensure NTP is running and enabled at system start
   service: >
     name=ntp
     state=started
     enabled=yes
+  tags: [configuration, ntp]
   when: ntp_enabled
 
-- name: Ensure NTP is stopped and disabled at system start.
+- name: Ensure NTP is stopped and disabled at system start
   service: >
     name=ntp
     state=stopped
     enabled=no
+  tags: [configuration, ntp]
   when: not ntp_enabled

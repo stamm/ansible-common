@@ -2,22 +2,22 @@
   apt:
     pkg: exim4
     state: latest
+  tags: [configuration, exim]
 
-- name: "Set /etc/exim4/update-exim4.conf.conf"
+- name: Set /etc/exim4/update-exim4.conf.conf
   template: dest=/etc/exim4/update-exim4.conf.conf src=update-exim4.conf.conf.j2
   notify:
     - update exim4 conf
     - restart exim4
-  when: ansible_os_family == "Debian"
-  tags: [configuration,exim]
+  tags: [configuration, exim]
 
-- name: "Set /etc/exim4/passwd.client"
+- name: Set /etc/exim4/passwd.client
   template: dest=/etc/exim4/passwd.client src=passwd.client.j2
   notify:
     - update exim4 conf
     - restart exim4
-  when: ansible_os_family == "Debian"
-  tags: [configuration,exim]
+  tags: [configuration, exim]
 
 
 - lineinfile: "dest=/etc/aliases regexp='^root' line='root: {{ root_mail }}'"
+  tags: [configuration, exim]

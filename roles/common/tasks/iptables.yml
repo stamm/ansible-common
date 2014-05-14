@@ -1,5 +1,7 @@
 - name: insert iptables template
   template: src=iptables.j2 dest=/etc/network/if-up.d/iptables owner=root group=root
   notify: restart iptables
+  tags: [configuration, iptables]
 
 - file: path=/etc/network/if-up.d/iptables mode=0700
+  tags: [configuration, iptables]

@@ -1,0 +1,13 @@
+- command: apt-get install -y python-apt
+  tags: [configuration, packages]
+
+- name: Install packages
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - mc
+    - htop
+    - curl
+    - git
+  tags: [configuration, packages]
