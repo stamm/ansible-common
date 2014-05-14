@@ -2,9 +2,11 @@
 - hosts: all
   roles: [common]
   sudo: yes
+  vars_files:
+    - vars/secret.yml
   # accelerate: true
   # remote_user: root
-  tasks:
+  # tasks:
   # - debug: msg="{{ inventory_dir }}"
   # - debug: msg="{{ lookup('file', users[0].ssh_keys) }} is an environment variable"
 
