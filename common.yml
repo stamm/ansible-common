@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: common
   roles:
   - { role: common, when: ansible_os_family == 'Debian' }
   sudo: yes
