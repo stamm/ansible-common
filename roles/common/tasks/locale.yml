@@ -10,7 +10,16 @@
   template: src=locale.j2 dest=/etc/default/locale owner=root group=root mode=0644
   tags: [configuration, locale]
 
-- name: Generate locales
+# - name: Generate locales
+#   locale_gen: name="{{ item }}" state=present
+#   with_items: locale_generate
+#   tags: [configuration, locale]
+
+
+- name: ensure the locale exists
   locale_gen: name="{{ item }}" state=present
   with_items: locale_generate
-  tags: [configuration, locale]
+
+- name: set the locale
+  command: /usr/sbin/update-locale LANG="{{ item }}" --reset
+  with_items: locale_generate
