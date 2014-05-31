@@ -1,3 +1,11 @@
+- name: Set yandex mirror
+  replace: "dest=/etc/apt/sources.list regexp='http://mirrors.kernel.org/' replace='http://mirror.yandex.ru/'"
+  tags: [configuration, packages]
+
+- name: Set yandex mirror
+  replace: "dest=/etc/apt/sources.list regexp='http://security.debian.org/' replace='http://mirror.yandex.ru/debian-security/'"
+  tags: [configuration, packages]
+
 - command: apt-get install -y python-apt
   tags: [configuration, packages]
 

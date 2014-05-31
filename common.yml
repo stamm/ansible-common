@@ -1,7 +1,7 @@
 ---
-- hosts: common
+- hosts: all
   roles:
-  - { role: common, when: ansible_os_family == 'Debian' }
+  - { role: common, tags: ['configuration'], when: ansible_os_family == 'Debian' }
   sudo: yes
   vars_files:
     - vars/secret.yml

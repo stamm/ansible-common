@@ -41,3 +41,11 @@
   copy: src=mc.ini dest=/home/{{ item.name }}/.config/mc/ini owner={{ item.name }} mode=0600
   with_items: users
   tags: [configuration, users]
+
+- name: Create directory for mc config for root
+  file: path=/root/.config/mc/ state=directory recurse=yes owner=root mode=0700
+  tags: [configuration, users]
+
+- name: Copy mc config for root
+  copy: src=mc.ini dest=/root/.config/mc/ini owner=root mode=0600
+  tags: [configuration, users]

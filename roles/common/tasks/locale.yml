@@ -5,12 +5,12 @@
     state: latest
   tags: [configuration, locale]
 
+
 - name: Write default/locale
   template: src=locale.j2 dest=/etc/default/locale owner=root group=root mode=0644
   tags: [configuration, locale]
 
-- name: Write locale.gen
-  template: src=locale.gen.j2 dest=/etc/locale.gen owner=root group=root mode=0644
-  notify:
-    - run locale-gen
+- name: Generate locales
+  locale_gen: name="{{ item }}" state=present
+  with_items: locale_generate
   tags: [configuration, locale]

@@ -19,5 +19,6 @@
   tags: [configuration, exim]
 
 
-- lineinfile: "dest=/etc/aliases regexp='^root' line='root: {{ root_mail }}'"
+- name: Set email for user root
+  replace: "dest=/etc/aliases regexp='^root.*$' replace='root: {{ root_mail }}'"
   tags: [configuration, exim]

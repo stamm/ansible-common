@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ansible-playbook common.yml --ask-vault-pass
+ansible-playbook common.yml --vault-password-file=pass.txt
