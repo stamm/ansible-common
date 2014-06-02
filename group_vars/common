@@ -22,11 +22,11 @@ users:
     ssh_keys:
       - files/public_keys/stamm-work.pub
       - files/public_keys/stamm-macbook.pub
-    uid: 1001
+    uid: 1101
   
   - name: deploy
     groups: ['deploys']
     ssh_keys:
       - files/public_keys/stamm-work.pub
       - files/public_keys/stamm-macbook.pub
-    uid: 1002
+    uid: 1102
