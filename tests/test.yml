@@ -1,5 +1,7 @@
 ---
-- hosts: localhost
+- hosts: common
   remote_user: root
   roles:
     - common
+  vars_files:
+    - vars/secret.yml
