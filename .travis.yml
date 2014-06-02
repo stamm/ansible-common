@@ -14,6 +14,7 @@ script:
   #- find . -maxdepth 1 -type f -name '*.yml' -not -name '.*' -not -name 'main.yml' | xargs -t -n1 ansible-playbook --syntax-check -i hosts_vagrant
   # - echo password > vault_pass.txt
   - cat /etc/passwd
+  - ifconfig
   - cp vars/secret.yml.example vars/secret.yml
   - mv tests/* ./
   # - ansible-vault encrypt --vault-password-file=./vault_pass.txt vars/secret.yml
